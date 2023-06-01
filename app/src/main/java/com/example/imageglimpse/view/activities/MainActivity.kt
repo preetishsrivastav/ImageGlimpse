@@ -46,17 +46,11 @@ class MainActivity : AppCompatActivity() {
 
          mainViewModel.imageLiveData.observe(this, Observer {
              imageAdapter.images = it
-             progressDialog.hide()
+             progressDialog.dismiss()
          })
     }
 
-    override fun onBackPressed() {
-        if (progressDialog.isShowing) {
-            progressDialog.dismiss()
-        } else {
-            super.onBackPressed()
-        }
-    }
+
 
     fun setUpRecyclerView() = binding.rvMain.apply {
         imageAdapter = MainAdapter(this@MainActivity)
