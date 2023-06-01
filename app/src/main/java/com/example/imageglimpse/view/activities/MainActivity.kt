@@ -5,9 +5,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.imageglimpse.R
 import com.example.imageglimpse.databinding.ActivityMainBinding
 import com.example.imageglimpse.repository.Repository
@@ -46,6 +48,14 @@ class MainActivity : AppCompatActivity() {
              imageAdapter.images = it
              progressDialog.hide()
          })
+    }
+
+    override fun onBackPressed() {
+        if (progressDialog.isShowing) {
+            progressDialog.dismiss()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     fun setUpRecyclerView() = binding.rvMain.apply {
